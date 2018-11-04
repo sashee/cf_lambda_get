@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  POSTPOST:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: gw.yml
+      Parameters:
+        IntegrationHttpMethod: POST
+        PermissionMethod: POST
+  POSTGET:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: gw.yml
+      Parameters:
+        IntegrationHttpMethod: POST
+        PermissionMethod: GET
+  GETGET:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: gw.yml
+      Parameters:
+        IntegrationHttpMethod: GET
+        PermissionMethod: GET
+Outputs:
+  POSTGETURL:
+    Value: !GetAtt POSTGET.Outputs.url
+  POSTGETGW:
+    Value: !GetAtt POSTGET.Outputs.apiGw
+  POSTPOSTURL:
+    Value: !GetAtt POSTPOST.Outputs.url
+  POSTPOSTGW:
+    Value: !GetAtt POSTPOST.Outputs.apiGw
+  GETGETURL:
+    Value: !GetAtt GETGET.Outputs.url
+  GETGETGW:
+    Value: !GetAtt GETGET.Outputs.apiGw
